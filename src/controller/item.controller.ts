@@ -1,23 +1,26 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body } from '@nestjs/common';
 import { Item } from 'types/Item';
 import { ItemService } from '../services/item.service';
 
-@Controller()
+@Controller('item')
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}
-
   @Get()
-  async getItem(id: number): Promise<Item> {
-    return await this.itemService.getItem(id);
+  getTeste(): string {
+    return 'oi';
+  }
+  @Get('filter/:id')
+  async getItem(@Param('id') id: number): Promise<Item> {
+    return await this.itemService.getItem(+id);
   }
 
   @Post()
-  async criaItem(novoItem: Item): Promise<boolean> {
-    return await this.itemService.criaItem(novoItem);
+  async criaItem(@Body() body: any): Promise<boolean> {
+    return await this.itemService.criaItem(new Item(body.nome, body.preco));
   }
 
   @Post()
-  async removeItem(id: number): Promise<boolean> {
-    return await this.itemService.removeItem(id);
+  async removeItem(@Body() body: any): Promise<boolean> {
+    return await this.itemService.removeItem(+body.id);
   }
 }

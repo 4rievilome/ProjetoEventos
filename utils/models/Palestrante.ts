@@ -1,4 +1,4 @@
-import { DataTypes } from 'sequelize/types';
+import { DataTypes } from 'sequelize';
 import { connect } from '../SequelizeConnect';
 
 export const Palestrantes = connect.define('palestrantes', {
