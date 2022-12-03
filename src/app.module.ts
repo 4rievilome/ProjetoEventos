@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import {
   EventoController,
   ItemController,
@@ -11,7 +10,6 @@ import {
   ItemService,
   PalestranteService,
 } from './services/services';
-import { AppService } from './app.service';
 
 @Module({
   imports: [],
