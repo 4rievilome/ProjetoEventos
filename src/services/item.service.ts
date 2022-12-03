@@ -8,9 +8,10 @@ export class ItemService {
     let retornoItem: Item;
     try {
       const item = (await Itens.findByPk(id)).toJSON();
-      retornoItem = new Item(item.nomeItem, item.preco);
-    } catch (error) {}
-    return retornoItem;
+      return new Item(item.nomeItem, item.preco);
+    } catch (error) {
+      return retornoItem;
+    }
   }
 
   async criaItem(novoItem: Item): Promise<boolean> {

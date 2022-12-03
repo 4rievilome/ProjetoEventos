@@ -44,4 +44,12 @@ export class Evento {
   setHorario(horario: string) {
     this.horario = horario;
   }
+
+  setTema(tema: string) {
+    this.tema = tema;
+  }
+
+  setPalestrantes(p: string) {
+    this.palestrantes = p;
+  }
 }

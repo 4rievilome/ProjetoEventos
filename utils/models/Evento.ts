@@ -22,7 +22,7 @@ export const Eventos = connect.define('eventos', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  Palestrantes: {
+  palestrantes: {
     type: DataTypes.STRING,
     allowNull: false,
   },
