@@ -20,7 +20,7 @@ export class EventoService {
     }
   }
 
-  async criaEvento(novoEvento: Evento): Promise<boolean> {
+  async registraEvento(novoEvento: Evento): Promise<boolean> {
     try {
       const obj = await Eventos.create({
         nomeEvento: novoEvento.getNomeEvento(),

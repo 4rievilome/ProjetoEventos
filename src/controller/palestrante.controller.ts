@@ -3,7 +3,7 @@ import { Palestrante } from 'types/Palestrante';
 import { PalestranteService } from '../services/palestrante.service';
 
 @Controller()
-export class EventoController {
+export class PalestranteController {
   constructor(private readonly palestranteService: PalestranteService) {}
 
   @Get()
