@@ -18,7 +18,7 @@
 
 # Instalação
 
-- Node
+- Node <br>
 <a href="https://nodejs.org/pt-br/download/">Link para o download do Node </a>
 <br>
 - Nestjs (globalmente)
@@ -26,7 +26,7 @@
     npm i -g @nestjs/cli
 ```
 
-- Postgres
+- Postgres <br>
 <a href="https://www.postgresql.org/download/"> Link para baixar Postgres</a>
 <br>
 - Instalar bibliotecas node
