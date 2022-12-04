@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Evento } from 'types/Evento';
 import { EventoService } from '../services/evento.service';
 
@@ -10,14 +10,17 @@ export class EventoController {
   async getAll(): Promise<object> {
     return this.eventoService.getAll();
   }
-  @Get('filter:/id')
-  async getEvento(id: number): Promise<Evento> {
-    return await this.eventoService.getEvento(+id);
+  @Get('filter/:id')
+  async getEvento(@Param('id') id: number): Promise<object> {
+    const retorno = await this.eventoService.getEvento(+id);
+    return Object.keys(retorno).length === 0
+      ? { Message: 'Não foi encontrado com esse ID' }
+      : retorno;
   }
 
   @Post('new')
-  async registraEvento(@Body() body: any): Promise<boolean> {
-    return await this.eventoService.registraEvento(
+  async registraEvento(@Body() body: any): Promise<object> {
+    return (await this.eventoService.registraEvento(
       new Evento(
         body.nomeEvento,
         body.horario,
@@ -25,11 +28,15 @@ export class EventoController {
         body.tema,
         body.palestrantes,
       ),
-    );
+    ))
+      ? { Message: 'Criado com sucesso' }
+      : { Message: 'Falha ao criar!' };
   }
 
-  @Post()
-  async excluiEvento(@Body() body: any): Promise<boolean> {
-    return await this.eventoService.excluiEvento(+body?.id);
+  @Post('remove')
+  async excluiEvento(@Body() body: any): Promise<object> {
+    return (await this.eventoService.excluiEvento(+body?.id))
+      ? { Message: 'Excluido com sucesso' }
+      : { Message: 'Falha ao excluir!' };
   }
 }

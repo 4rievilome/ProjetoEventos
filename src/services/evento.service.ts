@@ -4,19 +4,16 @@ import { Eventos } from 'utils/models/Evento';
 
 @Injectable()
 export class EventoService {
-  async getEvento(id: number): Promise<Evento> {
-    let evento: Evento;
+  async getEvento(id: number): Promise<object> {
     try {
-      const e = (await Eventos.findByPk(id)).toJSON();
-      return new Evento(
-        e.getNomeEvento(),
-        e.getHorario(),
-        e.getCapacidade(),
-        e.getTema(),
-        e.getPalestrantes(),
-      );
+      const e = (
+        await Eventos.findByPk(id, {
+          attributes: { exclude: ['createdAt', 'updatedAt'] },
+        })
+      ).toJSON();
+      return e;
     } catch (error) {
-      return evento;
+      return { Message: 'Erro ao buscar' };
     }
   }
 
@@ -51,6 +48,8 @@ export class EventoService {
         attributes: { exclude: ['createdAt', 'updatedAt'] },
       });
       return eventos;
-    } catch (error) {}
+    } catch (error) {
+      Message: 'Erro ao buscar';
+    }
   }
 }

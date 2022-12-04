@@ -12,17 +12,24 @@ export class ItemController {
   }
 
   @Get('filter/:id')
-  async getItem(@Param('id') id: number): Promise<Item> {
-    return await this.itemService.getItem(+id);
+  async getItem(@Param('id') id: number): Promise<object> {
+    const retorno = await this.itemService.getItem(+id);
+    return Object.keys(retorno).length === 0
+      ? { Message: 'não foi possivel encontrar com esse id' }
+      : retorno;
   }
 
   @Post('new')
-  async criaItem(@Body() body: any): Promise<boolean> {
-    return await this.itemService.criaItem(new Item(body?.nome, +body?.preco));
+  async criaItem(@Body() body: any): Promise<object> {
+    return (await this.itemService.criaItem(new Item(body?.nome, +body?.preco)))
+      ? { Message: 'Criado com sucesso!' }
+      : { Message: 'Não foi possivel criar!' };
   }
 
   @Post('remove')
-  async removeItem(@Body() body: any): Promise<boolean> {
-    return await this.itemService.removeItem(+body?.id);
+  async removeItem(@Body() body: any): Promise<object> {
+    return (await this.itemService.removeItem(+body?.id))
+      ? { Message: 'Excluido com sucesso!' }
+      : { Message: 'Falha ao excluir' };
   }
 }

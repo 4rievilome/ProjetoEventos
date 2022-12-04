@@ -4,13 +4,16 @@ import { Itens } from '../../utils/models/Item';
 
 @Injectable()
 export class ItemService {
-  async getItem(id: number): Promise<Item> {
-    let retornoItem: Item;
+  async getItem(id: number): Promise<object> {
     try {
-      const item = (await Itens.findByPk(id)).toJSON();
-      return new Item(item.nomeItem, item.preco);
+      const item = (
+        await Itens.findByPk(id, {
+          attributes: { exclude: ['createdAt', 'updatedAt'] },
+        })
+      ).toJSON();
+      return item;
     } catch (error) {
-      return retornoItem;
+      return { Message: 'Erro ao buscar' };
     }
   }
 
@@ -45,7 +48,7 @@ export class ItemService {
       });
       return itens;
     } catch (error) {
-      return {};
+      return { Message: 'Erro ao buscar' };
     }
   }
 }

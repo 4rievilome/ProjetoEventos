@@ -4,18 +4,16 @@ import { Palestrantes } from 'utils/models/Palestrante';
 
 @Injectable()
 export class PalestranteService {
-  async getPalestrante(id: number): Promise<Palestrante> {
-    let palestrante: Palestrante;
+  async getPalestrante(id: number): Promise<object> {
     try {
-      const p = (await Palestrantes.findByPk(id)).toJSON();
-      return new Palestrante(
-        p.nomePalestrante,
-        p.email,
-        p.cargo,
-        p.instituicao,
-      );
+      const p = (
+        await Palestrantes.findByPk(id, {
+          attributes: { exclude: ['createdAt', 'updatedAt'] },
+        })
+      ).toJSON();
+      return p;
     } catch (error) {
-      return palestrante;
+      return { Message: 'Não foi possivel encontrar palestrante' };
     }
   }
 
@@ -40,6 +38,17 @@ export class PalestranteService {
       return true;
     } catch (error) {
       return false;
+    }
+  }
+
+  async getAll(): Promise<object> {
+    try {
+      const all = await Palestrantes.findAll({
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      });
+      return all;
+    } catch (error) {
+      return { Message: 'Erro ao buscar' };
     }
   }
 }
