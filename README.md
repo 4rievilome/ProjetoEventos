@@ -37,7 +37,7 @@
 ```
 # Executar projeto
 
-## Iniciar servidor
+## Iniciar servidor - PORTA 3000
 ```
     npm run start
 ```
