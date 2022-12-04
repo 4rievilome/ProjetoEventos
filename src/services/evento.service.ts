@@ -25,7 +25,7 @@ export class EventoService {
       const obj = await Eventos.create({
         nomeEvento: novoEvento.getNomeEvento(),
         horario: novoEvento.getHorario(),
-        capacidadeMax: novoEvento.getCapacidade(),
+        capacidadeMax: +novoEvento.getCapacidade(),
         tema: novoEvento.getTema(),
         palestrantes: novoEvento.getPalestrantes(),
       });

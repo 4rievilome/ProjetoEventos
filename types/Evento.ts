@@ -13,6 +13,7 @@ export class Evento {
   ) {
     this.nomeEvento = nomeEvento;
     this.horario = horario;
+    this.capacidade = capacidade;
     this.tema = tema;
     this.palestrantes = palestrantes;
   }

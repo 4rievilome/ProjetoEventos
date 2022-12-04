@@ -22,6 +22,8 @@ export class ItemService {
       });
       return itemNovo ? true : false;
     } catch (error) {
+      console.log('error abaixo:');
+      console.log(error);
       return false;
     }
   }
