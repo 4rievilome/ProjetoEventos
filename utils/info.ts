@@ -1,9 +1,9 @@
 const info = {
-  DB: 'queendb',
-  USER: 'postgres',
-  PASSWORD: 'pg123',
+  DB: '',
+  USER: '',
+  PASSWORD: '',
   PORT: 5432,
-  HOST: 'localhost',
+  HOST: '',
 };
 
 export { info };
