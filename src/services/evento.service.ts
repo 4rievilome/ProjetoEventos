@@ -44,4 +44,13 @@ export class EventoService {
       return false;
     }
   }
+
+  async getAll(): Promise<object> {
+    try {
+      const eventos = await Eventos.findAll({
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      });
+      return eventos;
+    } catch (error) {}
+  }
 }

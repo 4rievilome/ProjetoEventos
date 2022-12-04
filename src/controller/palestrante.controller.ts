@@ -1,23 +1,30 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { Palestrante } from 'types/Palestrante';
 import { PalestranteService } from '../services/palestrante.service';
 
-@Controller()
+@Controller('palestrantes')
 export class PalestranteController {
   constructor(private readonly palestranteService: PalestranteService) {}
 
-  @Get()
+  @Get('filter/:id')
   async getPalestrante(id: number): Promise<Palestrante> {
     return await this.palestranteService.getPalestrante(id);
   }
 
-  @Post()
-  async registraPalestrante(novoPalestrante: Palestrante): Promise<boolean> {
-    return await this.palestranteService.registraPalestrante(novoPalestrante);
+  @Post('new')
+  async registraPalestrante(@Body() body: any): Promise<boolean> {
+    return await this.palestranteService.registraPalestrante(
+      new Palestrante(
+        body?.nomePalestrante,
+        body?.email,
+        body?.cargo,
+        body?.instituicao,
+      ),
+    );
   }
 
-  @Post()
-  async excluiPalestrante(id: number): Promise<boolean> {
-    return await this.excluiPalestrante(id);
+  @Post('remove')
+  async excluiPalestrante(@Body() body: any): Promise<boolean> {
+    return await this.excluiPalestrante(+body.id);
   }
 }

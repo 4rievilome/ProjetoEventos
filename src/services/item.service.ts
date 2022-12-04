@@ -35,4 +35,15 @@ export class ItemService {
       return false;
     }
   }
+
+  async getAll(): Promise<object> {
+    try {
+      const itens = await Itens.findAll({
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      });
+      return itens;
+    } catch (error) {
+      return {};
+    }
+  }
 }
