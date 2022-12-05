@@ -1,63 +1,145 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUEEN - Gerenciamento de eventos</title>
+    <title>Document</title>
 </head>
 <style>
     *{
         margin: 0;
         padding: 0;
-        max-width: 100%;
-        background-color: #261c3e;
+    }
+    body{
+        display: grid;
+        grid-template-rows: 10vh 89vh 89vh;
+        row-gap: 2vh;
+        background: linear-gradient(89.9deg, #461EA7 20%, #251253 98%, rgba(48, 24, 104, 1) 100%);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
     #header{
-        background-color: #261c3e;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        padding: 30px 0px 10px 60px;
-        color: azure;
+        display: grid;
+        grid-template-columns: 33vw 55vw 1vw;
+        color:#EDEDED;
+        font-weight: 700;
+        padding-top: 3%;
     }
-    #title {
-        font-weight: bolder;
-        font-size:xx-large
+    #header div p{
+        font-size: 30px;
+        margin-left: 30%;
     }
-    
-    #s-1{
-        display: flex;
-        justify-content: space-between;
+    #header nav a{
+        padding-left: 2%;
     }
-
-    #s-2{
-        font-size: large;
-        font-weight: bold;
-        padding: 10px;
-        align-items: center; 
+    #header nav div{
+        margin-left: 40%;
     }
 
-    #s-2 a{
-        padding-left: 10px;
-    }
-
-    #s-2 a:hover{
-        color: #ffe500;
+    #header nav a:hover{
+        color:#FFE600;
         cursor: pointer;
     }
-    
+
+    .card {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 4%;
+    }
+    .card img{
+        width: 80%;
+        box-shadow: #251253 2px 4px 20px;
+    }
+    .card #slider{
+        width: 76%;
+        padding: 2%;
+        position: absolute;
+        margin-top: 31%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .full{
+        width: 10px;
+        height: 10px;
+        background-color: #D9D9D9;
+        border-radius: 100%;
+        margin-left: 2%;
+        border: 2px solid #D9D9D9;
+    }
+
+    .void{
+        width: 10px;
+        height: 10px;
+        border: 2px solid #D9D9D9;
+        border-radius: 100%;
+        margin-left: 2%;
+        cursor: pointer;
+    }
+    .name{
+        position: absolute;
+        margin-left: 60%;
+        background-color: #FFE600;
+        padding: 1%;
+        font-weight: 700;
+        color: #251253;
+    }
+
+    #adorno{
+        display: flex;
+        flex-direction: column;
+    }
+   
+    #adorno svg{
+        margin-bottom: 0.5%;
+        margin-left: 51%;
+    }
+
+    #adorno svg:nth-child(1){
+        margin-left: 88%;
+        cursor: pointer;
+    }
 </style>
 <body>
     <section id="header">
-        <div id="s-1">
-            <a id="title">QUEEN</a>
-            <div id="s-2">
-                <a>Home</a>
-                <a>Cadastrar</a>
-                <a>Eventos</a>
-                <a>img</a>
-            </div>
+        <div>
+            <p>QUEEN</p>
         </div>
+        <nav>
+            <div>
+                <a>HOME</a>
+                <a>EVENTOS</a>
+                <a>CADASTRAR</a> 
+            </div>       
+        </nav>
+        <svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="7" width="14" height="12" fill="#FFE600"/>
+            <rect y="5" width="14" height="12" fill="#FFF27B"/>
+            </svg>    
     </section>
-    <section id="highlights"></section>
+    <section id="highlights">
+        <div class="card">
+            <img src="static/img/dragaofodao.png">
+            <div id="slider">
+                <div class="full"></div>
+                <div class="void"></div>
+                <div class="void"></div>
+            </div>
+            <div class="name">
+                <p>EU ODEIO O CARALHO DO FRONT-END</p>
+            </div>
+            
+        </div>
+        <div id="adorno">
+            <svg width="35" height="26" viewBox="0 0 35 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M28.04 0H6.96C3.12214 0 0 3.13214 0 6.98143V18.7321C0 22.5821 3.12214 25.7136 6.96 25.7136H28.04C31.8779 25.7136 35 22.5814 35 18.7321V6.98143C35 3.13214 31.8779 0 28.04 0ZM33.5714 18.7329C33.5714 21.795 31.09 24.2857 28.04 24.2857H6.96C3.91 24.2857 1.42857 21.7943 1.42857 18.7329V6.98143C1.42857 3.92 3.91 1.42857 6.96 1.42857H28.04C31.09 1.42857 33.5714 3.92 33.5714 6.98143V18.7329Z" fill="#FFE500"/>
+                <path d="M23.8286 12.5986L13.9322 6.80214C13.7122 6.67357 13.4386 6.67143 13.2165 6.79857C12.9943 6.92571 12.8572 7.16214 12.8572 7.41857V19.0107C12.8572 19.2664 12.9943 19.5036 13.2157 19.6307C13.3257 19.6936 13.4486 19.725 13.5715 19.725C13.6965 19.725 13.8207 19.6921 13.9322 19.6271L23.8286 13.8321C24.0472 13.7043 24.1822 13.4693 24.1822 13.2157C24.1822 12.9621 24.0479 12.7264 23.8286 12.5986ZM14.2857 17.7643V8.66429L22.0543 13.215L14.2857 17.7643Z" fill="#FFE500"/>
+                </svg>
+                <svg width="745" height="2" viewBox="0 0 745 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line y1="1.25" x2="745" y2="1.25" stroke="#FFE600" stroke-width="1.5"/>
+                    </svg>                         
+        </div>       
+    </section>
+    <section id="eventos">c</section>
 </body>
-</html>
+</html> 
