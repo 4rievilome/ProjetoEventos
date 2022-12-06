@@ -1,6 +1,4 @@
-const { json } = require("stream/consumers");
-
-class Connect{
+export class Connect{
     serverAdd = url;
     constructor(serverAdd){
         this.serverAdd = serverAdd
@@ -19,7 +17,7 @@ class Connect{
     }
 
     async getRequest(route){
-        const config = {}
+        const config = {method: "GET"}
         const URL = `${this.serverAdd}/${route}`
         const response = await fetch(URL,config);
         if(!response.ok) return {MSG:"Fetch error"};
