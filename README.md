@@ -35,7 +35,17 @@
 ```
     npm install
 ```
-# Executar projeto
+# Configurar banco de dados
+- Após baixar o postgres abra o executavel PgAdmin e crie uma senha para seu usuario
+- Crie o Banco de Dados dentro dos servidores
+- Preencha o arquivo "info.ts" com os dados do banco:
+
+    - Host
+    - User (postgres é o usuario padrão do postgres)
+    - Password
+    - PORT (caso esteja usando em uma porta diferente da padrão)
+    - DB (nome do banco de dados criado)
+# Executar projeto 
 
 ## Iniciar servidor - PORTA 3000
 ```
