@@ -47,7 +47,7 @@ let imgSlider = null;
 let txtSlider = null;
 let bullets = null;
 const imgPath = [
-  'static/img/dragaofodao.png',
+  'static/img/dragao.png',
   'static/img/e1.webp',
   'static/img/BGS.jpeg',
 ];
