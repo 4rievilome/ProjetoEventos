@@ -64,7 +64,17 @@ window.addEventListener('DOMContentLoaded', async i => {
     activeSlider = true;
 });
 
+window.addEventListener("click", i =>{
+    const element = i.target;
+    if(element.className === "sliderCounter") {
+        for(e of bullets){
+            e.style.backgroundColor = "transparent"
+        }
+        element.style.backgroundColor = "white"
+    }
+})
+
 setInterval( i => {
     contador < 2 ? contador++ : contador=0;
     setSlide()
-}, 1000);
+}, 2500);
