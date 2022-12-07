@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body, Header } from '@nestjs/common';
 import { Item } from 'types/Item';
 import { ItemService } from '../services/item.service';
 
@@ -7,11 +7,13 @@ export class ItemController {
   constructor(private readonly itemService: ItemService) {}
 
   @Get()
+  @Header('Access-Control-Allow-Origin', '*')
   async getAll(): Promise<object> {
     return await this.itemService.getAll();
   }
 
   @Get('filter/:id')
+  @Header('Access-Control-Allow-Origin', '*')
   async getItem(@Param('id') id: number): Promise<object> {
     const retorno = await this.itemService.getItem(+id);
     return Object.keys(retorno).length === 0
@@ -20,6 +22,7 @@ export class ItemController {
   }
 
   @Post('new')
+  @Header('Access-Control-Allow-Origin', '*')
   async criaItem(@Body() body: any): Promise<object> {
     return (await this.itemService.criaItem(new Item(body?.nome, +body?.preco)))
       ? { Message: 'Criado com sucesso!' }
@@ -27,6 +30,7 @@ export class ItemController {
   }
 
   @Post('remove')
+  @Header('Access-Control-Allow-Origin', '*')
   async removeItem(@Body() body: any): Promise<object> {
     return (await this.itemService.removeItem(+body?.id))
       ? { Message: 'Excluido com sucesso!' }
