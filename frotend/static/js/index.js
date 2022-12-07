@@ -48,13 +48,18 @@ let imgSlider = null;
 let txtSlider = null;
 let bullets = null;
 const imgPath = ["static/img/dragaofodao.png","static/img/e1.webp","static/img/BGS.jpeg"]
-const titulos = ["EU ODEIO O CARALHO DO FRONT-END", "PASSAGEM DE SLIDE", "OUTRO SLIDE"];
+const titulos = ["OFICINA DE CRIAÇÃO DE GAMES", "PALESTRA SOBRE IOT", "BAIANINHO DE MAUÁ ARRASANDO"];
+
 function setSlide(){
     imgSlider.src = imgPath[contador];
     txtSlider.innerText = titulos[contador];
+    for(e of bullets){
+        e.style.backgroundColor = "transparent"
+    }
+    bullets[contador].style.backgroundColor = "white"
 }
 
-window.addEventListener('DOMContentLoaded', async i => {
+window.addEventListener('DOMContentLoaded', async () => {
     imgSlider = document.getElementById("ImgSlider");
     txtSlider = document.getElementById("TxtSlider");
     bullets = document.getElementsByClassName("sliderCounter");
@@ -64,17 +69,16 @@ window.addEventListener('DOMContentLoaded', async i => {
     activeSlider = true;
 });
 
-window.addEventListener("click", i =>{
-    const element = i.target;
-    if(element.className === "sliderCounter") {
-        for(e of bullets){
-            e.style.backgroundColor = "transparent"
-        }
-        element.style.backgroundColor = "white"
+function getClick(element,id){
+    for(e of bullets){
+        e.style.backgroundColor = "transparent"
     }
-})
+    element.style.backgroundColor = "white"
+    contador = id;
+    setSlide();
+}
 
-setInterval( i => {
+setInterval( () => {
     contador < 2 ? contador++ : contador=0;
     setSlide()
 }, 2500);
