@@ -42,24 +42,29 @@ class Connect{
 
 const dataHandler = null;
 const connect = new Connect("http://127.0.0.1:3000");
-const contador = 0;
+let contador = 0;
 const activeSlider = false;
-const imgSlider = document.getElementById("ImgSlider");
-const txtSlider = document.getElementById("TxtSlider");
-const imgPath = ["static/img/dragaofoda.png","static","static"]
+let imgSlider = null;
+let txtSlider = null;
+let bullets = null;
+const imgPath = ["static/img/dragaofodao.png","static/img/e1.webp","static/img/BGS.jpeg"]
 const titulos = ["EU ODEIO O CARALHO DO FRONT-END", "PASSAGEM DE SLIDE", "OUTRO SLIDE"];
 function setSlide(){
     imgSlider.src = imgPath[contador];
-    txtSlider.src = imgPath[contador];
+    txtSlider.innerText = titulos[contador];
 }
+
 window.addEventListener('DOMContentLoaded', async i => {
+    imgSlider = document.getElementById("ImgSlider");
+    txtSlider = document.getElementById("TxtSlider");
+    bullets = document.getElementsByClassName("sliderCounter");
     dataHandler = new DataHandler(await connect.request({method:"GET", route:"palestrantes", body:{}}), await connect.request({method:"GET", route:"eventos", body:{}}));
     imgSlider.src = imgPath[contador];
-    txtSlider.src = titulos[contador];
+    txtSlider.innerText  = titulos[contador];
     activeSlider = true;
 });
 
 setInterval( i => {
-    contador++;
+    contador < 2 ? contador++ : contador=0;
     setSlide()
 }, 1000);
