@@ -1,9 +1,11 @@
 import { Controller, Get, Post, Param, Body, Header } from '@nestjs/common';
 import { Item } from 'types/Item';
+import { ControllerInterface } from './ControllerInterface';
 import { ItemService } from '../services/item.service';
+import { Controller, Get, Post, Param, Body } from '@nestjs/common';
 
 @Controller('itens')
-export class ItemController {
+export class ItemController implements ControllerInterface {
   constructor(private readonly itemService: ItemService) {}
 
   @Get()
@@ -14,7 +16,7 @@ export class ItemController {
 
   @Get('filter/:id')
   @Header('Access-Control-Allow-Origin', '*')
-  async getItem(@Param('id') id: number): Promise<object> {
+  async getOne(@Param('id') id: number): Promise<object> {
     const retorno = await this.itemService.getItem(+id);
     return Object.keys(retorno).length === 0
       ? { Message: 'não foi possivel encontrar com esse id' }
@@ -23,7 +25,7 @@ export class ItemController {
 
   @Post('new')
   @Header('Access-Control-Allow-Origin', '*')
-  async criaItem(@Body() body: any): Promise<object> {
+  async registra(@Body() body: any): Promise<object> {
     return (await this.itemService.criaItem(new Item(body?.nome, +body?.preco)))
       ? { Message: 'Criado com sucesso!' }
       : { Message: 'Não foi possivel criar!' };
@@ -31,7 +33,8 @@ export class ItemController {
 
   @Post('remove')
   @Header('Access-Control-Allow-Origin', '*')
-  async removeItem(@Body() body: any): Promise<object> {
+  async exclui(@Body() body: any): Promise<object> {
+
     return (await this.itemService.removeItem(+body?.id))
       ? { Message: 'Excluido com sucesso!' }
       : { Message: 'Falha ao excluir' };
