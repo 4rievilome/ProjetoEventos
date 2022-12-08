@@ -1,17 +1,19 @@
+import { PalestranteService } from 'src/services/palestrante.service';
+import { ControllerInterface } from './ControllerInterface';
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { Palestrante } from 'types/Palestrante';
-import { PalestranteService } from '../services/palestrante.service';
 
-//Falta colocar uma response
 @Controller('palestrantes')
-export class PalestranteController {
+export class PalestranteController implements ControllerInterface {
   constructor(private readonly palestranteService: PalestranteService) {}
+
   @Get()
   async getAll(): Promise<object> {
     return await this.palestranteService.getAll();
   }
+
   @Get('filter/:id')
-  async getPalestrante(@Param('id') id: number): Promise<object> {
+  async getOne(@Param('id') id: number): Promise<object> {
     const retorno = await this.palestranteService.getPalestrante(id);
     return Object.keys(retorno).length === 0
       ? { Message: 'Não foi possivel encontrar com esse ID' }
@@ -19,7 +21,7 @@ export class PalestranteController {
   }
 
   @Post('new')
-  async registraPalestrante(@Body() body: any): Promise<object> {
+  async registra(@Body() body: any): Promise<object> {
     return (await this.palestranteService.registraPalestrante(
       new Palestrante(
         body?.nomePalestrante,
@@ -32,8 +34,8 @@ export class PalestranteController {
       : { Message: 'Falha ao criar' };
   }
 
-  @Post('remove')
-  async excluiPalestrante(@Body() body: any): Promise<object> {
+  @Post('new')
+  async exclui(@Body() body: any): Promise<object> {
     return (await this.palestranteService.excluiPalestrante(+body.id))
       ? { Message: 'Excluido com sucesso' }
       : { Message: 'Falha ao excluir' };
