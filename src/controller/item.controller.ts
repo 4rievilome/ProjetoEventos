@@ -2,7 +2,6 @@ import { Controller, Get, Post, Param, Body, Header } from '@nestjs/common';
 import { Item } from 'types/Item';
 import { ControllerInterface } from './ControllerInterface';
 import { ItemService } from '../services/item.service';
-import { Controller, Get, Post, Param, Body } from '@nestjs/common';
 
 @Controller('itens')
 export class ItemController implements ControllerInterface {
@@ -34,7 +33,6 @@ export class ItemController implements ControllerInterface {
   @Post('remove')
   @Header('Access-Control-Allow-Origin', '*')
   async exclui(@Body() body: any): Promise<object> {
-
     return (await this.itemService.removeItem(+body?.id))
       ? { Message: 'Excluido com sucesso!' }
       : { Message: 'Falha ao excluir' };
