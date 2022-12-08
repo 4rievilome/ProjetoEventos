@@ -1,6 +1,6 @@
 import { PalestranteService } from 'src/services/palestrante.service';
 import { ControllerInterface } from './ControllerInterface';
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Header } from '@nestjs/common';
 import { Palestrante } from 'types/Palestrante';
 
 @Controller('palestrantes')
@@ -8,11 +8,13 @@ export class PalestranteController implements ControllerInterface {
   constructor(private readonly palestranteService: PalestranteService) {}
 
   @Get()
+  @Header('Access-Control-Allow-Origin', '*')
   async getAll(): Promise<object> {
     return await this.palestranteService.getAll();
   }
 
   @Get('filter/:id')
+  @Header('Access-Control-Allow-Origin', '*')
   async getOne(@Param('id') id: number): Promise<object> {
     const retorno = await this.palestranteService.getPalestrante(id);
     return Object.keys(retorno).length === 0
@@ -21,6 +23,7 @@ export class PalestranteController implements ControllerInterface {
   }
 
   @Post('new')
+  @Header('Access-Control-Allow-Origin', '*')
   async registra(@Body() body: any): Promise<object> {
     return (await this.palestranteService.registraPalestrante(
       new Palestrante(
@@ -34,7 +37,8 @@ export class PalestranteController implements ControllerInterface {
       : { Message: 'Falha ao criar' };
   }
 
-  @Post('new')
+  @Post('remove')
+  @Header('Access-Control-Allow-Origin', '*')
   async exclui(@Body() body: any): Promise<object> {
     return (await this.palestranteService.excluiPalestrante(+body.id))
       ? { Message: 'Excluido com sucesso' }
