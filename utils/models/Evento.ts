@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
+import { Palestrantes } from './Palestrante';
 import { sequelize } from 'utils/SequelizeConnect';
-
+import { Subscriptions } from './Subscriptions';
 export class Eventos extends Model {}
 
 Eventos.init(
@@ -27,13 +28,11 @@ Eventos.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    palestrantes: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   },
   {
     sequelize,
     modelName: 'eventos',
   },
 );
+Eventos.hasMany(Palestrantes, { foreignKey: 'eventoID' });
+Eventos.hasMany(Subscriptions, { foreignKey: 'eventoID' });
