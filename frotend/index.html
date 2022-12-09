@@ -54,11 +54,28 @@
     </section>
     <section id="eventos">
         <div id="box-eventos">
+            <div id="wrapper-sub">
+                <div id="user-sub">
+                    <div>
+                        <p>Insira seus dados</p>
+                    </div>
+                    <div>
+                        <input placeholder="nome do evento">
+                        <input placeholder="Email">
+                    </div>
+                    <div>
+                        <p id="btn" onclick="handleClicks('sub')">Inscrever</p>
+                        <p id="cancelar" onclick="handleClicks('fechar')">cancelar</p>
+                    </div>
+                </div>
+            </div>
             <h1>EVENTOS</h1>
+            
             <div id="error">
                 <p>Nenhum evento foi encontrado! :c</p>
                 <a href="#cadastro">Cadastre um evento aqui</a>
             </div>
+            
         </div>
     </section>
     <section id="itens">

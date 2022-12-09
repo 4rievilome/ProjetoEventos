@@ -98,7 +98,7 @@ class SistemaEvento {
     'PALESTRA SOBRE IOT',
     'BAIANINHO DE MAUÁ ARRASANDO',
   ];
-
+  bodyToSend = {};
   imgSlider = null;
   txtSlider = null;
   bullets = null;
@@ -191,15 +191,40 @@ class SistemaEvento {
         novoElemento.appendChild(divInsc);
 
         btnDiv = document.createElement('div');
+        btnDiv.onclick = () => handleClicks('open');
         divInsc.appendChild(btnDiv);
 
         insc = document.createElement('p');
         insc.innerText = 'Inscrever-se';
+
         btnDiv.appendChild(insc);
 
         this.boxEventos.appendChild(novoElemento);
-        console.log(novoElemento);
       }
+    }
+  }
+
+  openSub() {
+    const subMenu = document.getElementById('wrapper-sub');
+    subMenu.style.display = 'flex';
+  }
+
+  closeSub() {
+    const subMenu = document.getElementById('wrapper-sub');
+    subMenu.style.display = 'none';
+  }
+
+  async subEvent() {
+    const nome = document.getElementById();
+    const email = document.getElementById();
+    const body = { nome, email };
+    response = await this.connect.request({
+      method: 'POST',
+      route: 'user',
+      body,
+    });
+    if (!response['MSG']) {
+      this.closeSub();
     }
   }
 }
@@ -235,6 +260,15 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   sisEvento.addEventos();
 });
+
+function handleClicks(key) {
+  const mapFunctions = {
+    open: () => sisEvento.openSub(),
+    sub: () => sisEvento.subEvent(),
+    fechar: () => sisEvento.closeSub(),
+  };
+  mapFunctions[key]();
+}
 
 function getClick(id) {
   sisEvento.setContador(id);
