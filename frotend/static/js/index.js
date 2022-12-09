@@ -104,7 +104,7 @@ class SistemaEvento{
   bullets = null;
   dataHandler = null;
   connect = null;
-  constructor(dataHandler, connect){
+  constructor(dataHandler, connect, imgSlider, txtSlider, bullets){
     this.dataHandler = dataHandler;
     this.connect = connect;
     this.imgSlider = imgSlider;
@@ -115,11 +115,12 @@ class SistemaEvento{
   };
 
   mudaPosicao(){
-    for(e of this.bullets){
+    for( let e of this.bullets){
       e.style.backgroundColor = 'transparent';
     }
     this.bullets[this.contador].style.backgroundColor = 'white';
   }
+
   mudaSlide(){
     this.imgSlider.src = this.imgPath[this.contador];
     this.txtSlider.innerText = this.titulos[this.contador];
@@ -160,10 +161,9 @@ window.addEventListener('DOMContentLoaded', async () => {
       document.getElementsByClassName('sliderCounter') 
     )
   }catch(e){
-    console.error("error %e", e)
+    console.error("error #%e", e)
   }
-  
-  console.log("load")
+
 });
 
 function getClick(id){
