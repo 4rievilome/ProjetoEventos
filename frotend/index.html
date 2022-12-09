@@ -60,12 +60,12 @@
                         <p>Insira seus dados</p>
                     </div>
                     <div>
-                        <input placeholder="nome do evento">
-                        <input placeholder="Email">
+                        <input id="nomePessoa" placeholder="nome da pessoa">
+                        <input id="emailPessoa" placeholder="Email">
                     </div>
                     <div>
-                        <p id="btn" onclick="handleClicks('sub')">Inscrever</p>
-                        <p id="cancelar" onclick="handleClicks('fechar')">cancelar</p>
+                        <p id="btn" onclick="handleClicks({key: 'sub'})">Inscrever</p>
+                        <p id="cancelar" onclick="handleClicks({key: 'fechar'})">cancelar</p>
                     </div>
                 </div>
             </div>

@@ -63,7 +63,6 @@ class Connect {
     const config = {
       method: 'POST',
       body: JSON.stringify(body),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
     };
     const URL = `${this.serverAdd}/${route}`;
     const response = await fetch(URL, config);
@@ -106,6 +105,7 @@ class SistemaEvento {
   connect = null;
   boxEventos = null;
   error = null;
+  eventIdSelected = 0;
   constructor(
     dataHandler,
     connect,
@@ -124,6 +124,9 @@ class SistemaEvento {
     this.bullets = bullets;
     this.boxEventos = boxEventos;
     this.error = error;
+  }
+  setEventId(id) {
+    this.eventIdSelected = id;
   }
 
   mudaPosicao() {
@@ -191,7 +194,8 @@ class SistemaEvento {
         novoElemento.appendChild(divInsc);
 
         btnDiv = document.createElement('div');
-        btnDiv.onclick = () => handleClicks('open');
+        btnDiv.onclick = () =>
+          handleClicks({ key: 'open', eventoID: evento.id });
         divInsc.appendChild(btnDiv);
 
         insc = document.createElement('p');
@@ -204,7 +208,8 @@ class SistemaEvento {
     }
   }
 
-  openSub() {
+  openSub(eventoID) {
+    this.setEventId(eventoID);
     const subMenu = document.getElementById('wrapper-sub');
     subMenu.style.display = 'flex';
   }
@@ -215,12 +220,12 @@ class SistemaEvento {
   }
 
   async subEvent() {
-    const nome = document.getElementById();
-    const email = document.getElementById();
-    const body = { nome, email };
-    response = await this.connect.request({
+    const nome = document.getElementById('nomePessoa').value;
+    const email = document.getElementById('emailPessoa').value;
+    const body = { nome, email, eventoID: this.eventIdSelected };
+    const response = await this.connect.request({
       method: 'POST',
-      route: 'user',
+      route: 'subs/new',
       body,
     });
     if (!response['MSG']) {
@@ -261,9 +266,9 @@ window.addEventListener('DOMContentLoaded', async () => {
   sisEvento.addEventos();
 });
 
-function handleClicks(key) {
+function handleClicks({ key, eventoID }) {
   const mapFunctions = {
-    open: () => sisEvento.openSub(),
+    open: () => sisEvento.openSub(eventoID),
     sub: () => sisEvento.subEvent(),
     fechar: () => sisEvento.closeSub(),
   };

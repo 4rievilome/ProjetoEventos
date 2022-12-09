@@ -6,6 +6,7 @@ export class SubService {
       const Sub = await Subscriptions.create({
         nomePessoa: novaSub.getNomePessoa(),
         email: novaSub.getEmail(),
+        eventoID: novaSub.getEventoId(),
       });
       return Sub ? true : false;
     } catch (error) {

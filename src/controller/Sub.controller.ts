@@ -9,7 +9,9 @@ export class SubController {
   @Post('new')
   @Header('Access-Control-Allow-Origin', '*')
   async registra(@Body() body: any): Promise<object> {
-    return (await this.subService.registraSub(new Sub(body?.nome, body?.email)))
+    return (await this.subService.registraSub(
+      new Sub(body?.nome, body?.email, body?.eventoID),
+    ))
       ? { Message: 'Criado com sucesso!' }
       : { Message: 'Falha ao criar! ' };
   }

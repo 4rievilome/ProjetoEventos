@@ -1,16 +1,22 @@
 export class Sub {
   private nomePessoa: string;
   private email: string;
-  constructor(nomePessoa: string, email: string) {
+  private eventoID: number;
+  constructor(nomePessoa: string, email: string, eventoId: number) {
     this.nomePessoa = nomePessoa;
     this.email = email;
+    this.eventoID = eventoId;
   }
 
-  getNomePessoa() {
+  getNomePessoa(): string {
     return this.nomePessoa;
   }
 
-  getEmail() {
+  getEmail(): string {
     return this.email;
+  }
+
+  getEventoId(): number {
+    return this.eventoID;
   }
 }
