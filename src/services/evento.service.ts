@@ -28,6 +28,8 @@ export class EventoService {
       });
       return obj ? true : false;
     } catch (error) {
+      console.log(+novoEvento.getCapacidade())
+      console.log(error)
       return false;
     }
   }

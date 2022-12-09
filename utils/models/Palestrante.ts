@@ -1,24 +1,32 @@
-import { DataTypes } from 'sequelize';
-import { connect } from '../SequelizeConnect';
+import { DataTypes, Model } from 'sequelize';
+import { sequelize } from '../SequelizeConnect';
 
-export const Palestrantes = connect.define('palestrantes', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
+export class Palestrantes extends Model {}
+
+Palestrantes.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
+    },
+    nomePalestrante: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+    },
+    cargo: {
+      type: DataTypes.STRING,
+    },
+    instituicao: {
+      type: DataTypes.STRING,
+    },
   },
-  nomePalestrante: {
-    type: DataTypes.STRING,
-    allowNull: false,
+  {
+    sequelize,
+    modelName: 'palestrantes',
   },
-  email: {
-    type: DataTypes.STRING,
-  },
-  cargo: {
-    type: DataTypes.STRING,
-  },
-  instituicao: {
-    type: DataTypes.STRING,
-  },
-});
+);
