@@ -1,4 +1,5 @@
 import { ItemService } from './item.service';
 import { PalestranteService } from './palestrante.service';
 import { EventoService } from './evento.service';
-export { ItemService, PalestranteService, EventoService };
+import { SubService } from './sub.service';
+export { ItemService, PalestranteService, EventoService, SubService };
