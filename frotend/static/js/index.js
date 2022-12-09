@@ -8,46 +8,46 @@ class DataHandler {
     this.itens = itens;
   }
 
-  getEventos(){
+  getEventos() {
     return this.eventos;
   }
 
-  getPalestrantes(){
+  getPalestrantes() {
     return this.palestrantes;
   }
 
-  getItens(){
+  getItens() {
     return this.itens;
   }
 
-  setEventos(eventos){
-    this.eventos = eventos
+  setEventos(eventos) {
+    this.eventos = eventos;
   }
 
-  setPalestrantes(palestrantes){
-    this.palestrantes = palestrantes
+  setPalestrantes(palestrantes) {
+    this.palestrantes = palestrantes;
   }
 
-  setItens(itens){
+  setItens(itens) {
     this.itens = itens;
   }
 
-  numEventos(){
-    return this.eventos.length
+  numEventos() {
+    return this.eventos.length;
   }
 
-  numPalestrantes(){
-    return this.palestrantes.length
+  numPalestrantes() {
+    return this.palestrantes.length;
   }
 
-  numItens(){
-    return this.itens.length
+  numItens() {
+    return this.itens.length;
   }
-  
-  precoTotal(listaItens){
+
+  precoTotal(listaItens) {
     let valorTotal = 0;
-    for(item of listaItens){
-      valorTotal+=item?.preco;
+    for (item of listaItens) {
+      valorTotal += item?.preco;
     }
     return valorTotal;
   }
@@ -86,7 +86,7 @@ class Connect {
   }
 }
 
-class SistemaEvento{
+class SistemaEvento {
   contador = 0;
   imgPath = [
     'static/img/dragao.png',
@@ -104,7 +104,17 @@ class SistemaEvento{
   bullets = null;
   dataHandler = null;
   connect = null;
-  constructor(dataHandler, connect, imgSlider, txtSlider, bullets){
+  boxEventos = null;
+  error = null;
+  constructor(
+    dataHandler,
+    connect,
+    imgSlider,
+    txtSlider,
+    bullets,
+    boxEventos,
+    error,
+  ) {
     this.dataHandler = dataHandler;
     this.connect = connect;
     this.imgSlider = imgSlider;
@@ -112,30 +122,85 @@ class SistemaEvento{
     this.txtSlider = txtSlider;
     this.txtSlider.innerText = this.titulos[this.contador];
     this.bullets = bullets;
-  };
+    this.boxEventos = boxEventos;
+    this.error = error;
+  }
 
-  mudaPosicao(){
-    for( let e of this.bullets){
+  mudaPosicao() {
+    for (let e of this.bullets) {
       e.style.backgroundColor = 'transparent';
     }
     this.bullets[this.contador].style.backgroundColor = 'white';
   }
 
-  mudaSlide(){
+  mudaSlide() {
     this.imgSlider.src = this.imgPath[this.contador];
     this.txtSlider.innerText = this.titulos[this.contador];
     this.mudaPosicao();
   }
 
-  incrementaContador(){
-    this.contador+=1;
+  incrementaContador() {
+    this.contador += 1;
   }
 
-  getContador(){
+  getContador() {
     return this.contador;
   }
-  setContador(id){
+  setContador(id) {
     this.contador = id;
+  }
+
+  addEventos() {
+    if (this.dataHandler.numEventos() > 0) {
+      this.error.style.display = 'none';
+      let novoElemento;
+      let divInfo;
+      let titulo;
+      let tema;
+      let palestrantes;
+      let horario;
+      let divInsc;
+      let btnDiv;
+      let insc;
+      for (let evento of this.dataHandler.getEventos()) {
+        novoElemento = document.createElement('div');
+        novoElemento.className = 'evento';
+
+        divInfo = document.createElement('div');
+        divInfo.className = 'info';
+        novoElemento.appendChild(divInfo);
+
+        titulo = document.createElement('p');
+        titulo.innerText = evento.nomeEvento;
+        divInfo.appendChild(titulo);
+
+        tema = document.createElement('p');
+        tema.innerText = `Tema: ${evento.tema}`;
+        divInfo.appendChild(tema);
+
+        horario = document.createElement('p');
+        horario.innerText = `Horario: ${evento.horario}`;
+        divInfo.appendChild(horario);
+
+        palestrantes = document.createElement('p');
+        palestrantes.innerText = `Palestrantes: ${evento.palestrantes}`;
+        divInfo.appendChild(palestrantes);
+
+        divInsc = document.createElement('div');
+        divInsc.className = 'insc';
+        novoElemento.appendChild(divInsc);
+
+        btnDiv = document.createElement('div');
+        divInsc.appendChild(btnDiv);
+
+        insc = document.createElement('p');
+        insc.innerText = 'Inscrever-se';
+        btnDiv.appendChild(insc);
+
+        this.boxEventos.appendChild(novoElemento);
+        console.log(novoElemento);
+      }
+    }
   }
 }
 
@@ -143,37 +208,44 @@ const connect = new Connect('http://127.0.0.1:3000');
 let sisEvento = null;
 
 window.addEventListener('DOMContentLoaded', async () => {
-  let dataHandler
-  try{
+  let dataHandler;
+  try {
     dataHandler = new DataHandler(
-      await connect.request({ method: 'GET', route: 'palestrantes', body: {} }),
       await connect.request({ method: 'GET', route: 'eventos', body: {} }),
+      await connect.request({ method: 'GET', route: 'palestrantes', body: {} }),
+      await connect.request({ method: 'GET', route: 'itens', body: {} }),
     );
-  }catch(e){
-    console.error("Error %e", e)
-  }
-  
-  try{
-    sisEvento = new SistemaEvento(dataHandler, 
-      connect,
-      document.getElementById('ImgSlider'), 
-      document.getElementById('TxtSlider'), 
-      document.getElementsByClassName('sliderCounter') 
-    )
-  }catch(e){
-    console.error("error #%e", e)
+  } catch (e) {
+    console.error('Error %e', e);
   }
 
+  try {
+    sisEvento = new SistemaEvento(
+      dataHandler,
+      connect,
+      document.getElementById('ImgSlider'),
+      document.getElementById('TxtSlider'),
+      document.getElementsByClassName('sliderCounter'),
+      document.getElementById('box-eventos'),
+      document.getElementById('error'),
+    );
+  } catch (e) {
+    console.error('error #%e', e);
+  }
+
+  sisEvento.addEventos();
 });
 
-function getClick(id){
-    sisEvento.setContador(id);
-    sisEvento.mudaSlide()
+function getClick(id) {
+  sisEvento.setContador(id);
+  sisEvento.mudaSlide();
 }
 
 setInterval(() => {
-  if(sisEvento){
-    sisEvento.getContador() < 2 ? sisEvento.incrementaContador() : sisEvento.setContador(0);
+  if (sisEvento) {
+    sisEvento.getContador() < 2
+      ? sisEvento.incrementaContador()
+      : sisEvento.setContador(0);
     sisEvento.mudaSlide();
   }
 }, 2500);
