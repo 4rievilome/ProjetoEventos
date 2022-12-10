@@ -32,7 +32,7 @@ export class EventoController implements ControllerInterface {
         body.horario,
         +body.capacidade,
         body.tema,
-        body.palestrantes,
+        new Date(body.data),
       ),
     ))
       ? { Message: 'Criado com sucesso' }
