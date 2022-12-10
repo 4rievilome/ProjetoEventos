@@ -1,9 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
-import { sequelize } from '../SequelizeConnect';
+import { sequelize } from 'utils/SequelizeConnect';
 
-export class Palestrantes extends Model {}
+export class Subscriptions extends Model {}
 
-Palestrantes.init(
+Subscriptions.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,22 +11,17 @@ Palestrantes.init(
       allowNull: false,
       primaryKey: true,
     },
-    nomePalestrante: {
+    nomePessoa: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
-    },
-    cargo: {
-      type: DataTypes.STRING,
-    },
-    instituicao: {
-      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
     sequelize,
-    modelName: 'palestrantes',
+    modelName: 'subscriptions',
   },
 );

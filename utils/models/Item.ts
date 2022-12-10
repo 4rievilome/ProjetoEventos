@@ -1,17 +1,25 @@
-import { DataTypes } from 'sequelize';
-import { connect } from '../SequelizeConnect';
+import { DataTypes, Model } from 'sequelize';
+import { sequelize } from '../SequelizeConnect';
 
-export const Itens = connect.define('itens', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
+export class Itens extends Model {}
+
+Itens.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
+    },
+    nomeItem: {
+      type: DataTypes.STRING,
+    },
+    preco: {
+      type: DataTypes.FLOAT,
+    },
   },
-  nomeItem: {
-    type: DataTypes.STRING,
+  {
+    sequelize,
+    modelName: 'itens',
   },
-  preco: {
-    type: DataTypes.FLOAT,
-  },
-});
+);

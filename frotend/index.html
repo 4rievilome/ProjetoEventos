@@ -17,6 +17,7 @@
             <div>
                 <a>HOME</a>
                 <a href="#eventos">EVENTOS</a>
+                <a href="#itens">LOJA DE ITENS</a>
                 <a href="#cadastro">CADASTRAR</a> 
             </div>       
         </nav>
@@ -29,9 +30,9 @@
         <div class="card">
             <img id="ImgSlider" src="static/img/dragao.png">
             <div id="slider">
-                <div class="sliderCounter" id="marcado" onclick="getClick(this,0)"></div>
-                <div class="sliderCounter" onclick="getClick(this,1)"></div>
-                <div class="sliderCounter" onclick="getClick(this,2)"></div>
+                <div class="sliderCounter" id="marcado" onclick="getClick(0)"></div>
+                <div class="sliderCounter" onclick="getClick(1)"></div>
+                <div class="sliderCounter" onclick="getClick(2)"></div>
             </div>
             <div class="name">
                 <p id="TxtSlider">OFICINA DE CRIAÇÃO DE GAMES</p>
@@ -51,21 +52,39 @@
         </div> 
         </div>      
     </section>
-    <section id="cadastro">
-        <div class="form">
-            <form action="#">
-                <div class="form-header">
-                    <div class="title">
-                        <h1>Cadastre-se</h1>
+    <section id="eventos">
+        <div id="box-eventos">
+            <div id="wrapper-sub">
+                <div id="user-sub">
+                    <div>
+                        <p>Insira seus dados</p>
                     </div>
-                    <div class="login-button">
-                        
+                    <div>
+                        <input id="nomePessoa" placeholder="nome da pessoa">
+                        <input id="emailPessoa" placeholder="Email">
+                    </div>
+                    <div>
+                        <p id="btn" onclick="handleClicks({key: 'sub'})">Inscrever</p>
+                        <p id="cancelar" onclick="handleClicks({key: 'fechar'})">cancelar</p>
                     </div>
                 </div>
-            </form>
+            </div>
+            <h1>EVENTOS</h1>
+            
+            <div id="error">
+                <p>Nenhum evento foi encontrado! :c</p>
+                <a href="#cadastro">Cadastre um evento aqui</a>
+            </div>
+            
         </div>
     </section>
+    <section id="itens">
 
+    </section>
+    <section id="cadastro">
+        
+    </section>
+    
     <section id="cadastro-palestrante">
         <div class="main-cadastro">
             <div class="left-cadastro">

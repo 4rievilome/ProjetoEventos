@@ -31,6 +31,7 @@ export class PalestranteController implements ControllerInterface {
         body?.email,
         body?.cargo,
         body?.instituicao,
+        +body.eventoID,
       ),
     ))
       ? { Message: 'Criado com sucesso' }
