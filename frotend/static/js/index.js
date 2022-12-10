@@ -62,8 +62,14 @@ class Connect {
   async postRequest(route, body) {
     const config = {
       method: 'POST',
-      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: Object.keys(body)
+        .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(body[k])}`)
+        .join('&'),
     };
+    console.log(config);
     const URL = `${this.serverAdd}/${route}`;
     const response = await fetch(URL, config);
     if (!response.ok) return { MSG: 'Fetch error' };
