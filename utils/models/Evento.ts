@@ -28,6 +28,10 @@ Eventos.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    dataEvento: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   },
   {
     sequelize,

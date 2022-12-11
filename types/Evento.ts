@@ -3,19 +3,19 @@ export class Evento {
   private horario: string;
   private capacidade: number;
   private tema: string;
-  private palestrantes: string;
+  private dataEvento: Date;
   constructor(
     nomeEvento: string,
     horario: string,
     capacidade: number,
     tema: string,
-    palestrantes: string,
+    dataEvento: Date,
   ) {
     this.nomeEvento = nomeEvento;
     this.horario = horario;
     this.capacidade = capacidade;
     this.tema = tema;
-    this.palestrantes = palestrantes;
+    this.dataEvento = dataEvento;
   }
 
   getNomeEvento(): string {
@@ -34,8 +34,8 @@ export class Evento {
     return this.tema;
   }
 
-  getPalestrantes(): string {
-    return this.palestrantes;
+  getDataEvento(): Date {
+    return this.dataEvento;
   }
 
   setNomeEvento(nome: string) {
@@ -50,7 +50,7 @@ export class Evento {
     this.tema = tema;
   }
 
-  setPalestrantes(p: string) {
-    this.palestrantes = p;
+  setDataEvento(data: Date) {
+    this.dataEvento = data;
   }
 }

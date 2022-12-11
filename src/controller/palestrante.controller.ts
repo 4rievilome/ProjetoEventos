@@ -28,9 +28,9 @@ export class PalestranteController implements ControllerInterface {
     return (await this.palestranteService.registraPalestrante(
       new Palestrante(
         body?.nomePalestrante,
-        body?.email,
-        body?.cargo,
-        body?.instituicao,
+        body?.emailPalestrante,
+        body?.cargoPalestrante,
+        body?.instPalestrante,
         +body.eventoID,
       ),
     ))

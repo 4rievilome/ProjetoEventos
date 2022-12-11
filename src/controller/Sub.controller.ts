@@ -9,6 +9,7 @@ export class SubController {
   @Post('new')
   @Header('Access-Control-Allow-Origin', '*')
   async registra(@Body() body: any): Promise<object> {
+    console.log(body);
     return (await this.subService.registraSub(
       new Sub(body?.nome, body?.email, body?.eventoID),
     ))

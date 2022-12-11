@@ -82,37 +82,44 @@
 
     </section>
     <section id="cadastro">
-        
-    </section>
-    
-    <section id="cadastro-palestrante">
-        <div class="main-cadastro">
-            <div class="left-cadastro">
-                <h1>Cadastre-se <br>Participe do evento conosco!</h1>
-                <div class="card-cadastro">
-                    <div class="textfield">
-                        <label for="palestrante">Nome do palestrante</label>
-                        <input type="text" id="palestrante" placeholder="Nome">
-                    </div>
-                    <div class="email">
-                        <label for="email-palestrante">Email</label>
-                        <input type="email" id="email" placeholder="Email">
-                    </div>
-                    <div class="textfield">
-                        <label for="cargo">Cargo</label>
-                        <input type="text" id="cargo" placeholder="Cargo">
-                    </div>
-                    <div class="textfield">
-                        <label for="instituicao">Instituição</label>
-                        <input type="text" id="instituicao" placeholder="Selecione sua Instuição">
-                    </div>
-                    <div class="textfield">
-                        <label for="tipo-evento">Evento</label>
-                        <input type="text" id="evento" placeholder="Evento">
-                    </div>
-                    <button class="btn-cadastro">CADASTRAR</button>
+        <div id="card">
+        <div id="cadastro-evento">
+            <div>
+                <p>Cadastre um evento</p>
+            </div>
+            <div>
+                <input id="nomeEventoForm" class='input-type-1' placeholder="Nome do Evento">
+                <input id="temaEventoForm" class='input-type-1' placeholder="Tema">
+                <div id="t2">
+                    <input id="capacidadeEventoForm" class='input-type-2' placeholder="Capacidade Maxima">
+                    <input id="dateEventoForm" class='input-type-2' type='date'>
+                    <input id="horarioEventoForm" class='input-type-2' placeholder="horario">
                 </div>
             </div>
-        </div>        
+        </div>
+        <div id="cadastro-palestrinha">
+            <div>
+                <p>Cadastre um palestrante para o evento</p>
+            </div>
+            <div>
+                <input id="nomePalestranteForm" class='input-type-1' placeholder="Nome do Palestrante">
+                <input id="emailPalestranteForm" class='input-type-1' placeholder="Email">
+                <div id="t3">
+                    <input id="cargoPalestranteForm" class='input-type-4' placeholder="cargo">
+                    <input id="instPalestranteForm" class='input-type-4' placeholder="instituição">
+                </div>
+                <select name="eventos-list" class='select-combo'>
+                    
+                </select>
+            </div>
+        </div>
+        <div id="wrapper-btn">
+            <p onclick="handleClicks({key: 'cadastro'})">Cadastrar</p>
+        </div>
+        <div id="troca">
+            <p id="btn-troca" onclick="handleClicks({key: 'troca'})">Cadastre um palestrante</p>
+        </div>
+    </div>
+    </section>
 </body>
 </html> 

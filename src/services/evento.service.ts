@@ -27,10 +27,11 @@ export class EventoService {
         horario: novoEvento.getHorario(),
         capacidadeMax: +novoEvento.getCapacidade(),
         tema: novoEvento.getTema(),
-        palestrantes: novoEvento.getPalestrantes(),
+        dataEvento: novoEvento.getDataEvento(),
       });
       return obj ? true : false;
     } catch (error) {
+      console.log(error);
       return false;
     }
   }
