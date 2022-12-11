@@ -172,8 +172,15 @@ class SistemaEvento {
     return this;
   }
 
+  converteTipoPalestrante(listaPalestrante) {
+    let ret = '';
+    for (let s of listaPalestrante) {
+      ret = ret !== '' ? ret + ',' + s.nomePalestrante : s.nomePalestrante;
+    }
+    return ret;
+  }
+
   addEvento(evento) {
-    console.log(evento);
     let novoElemento;
     let divInfo;
     let titulo;
@@ -203,7 +210,9 @@ class SistemaEvento {
     divInfo.appendChild(horario);
 
     palestrantes = document.createElement('p');
-    palestrantes.innerText = `Palestrantes: ${evento.palestrantes}`;
+    palestrantes.innerText = `Palestrantes: ${this.converteTipoPalestrante(
+      evento.palestrantes,
+    )}`;
     divInfo.appendChild(palestrantes);
 
     divInsc = document.createElement('div');
@@ -288,12 +297,13 @@ class SistemaEvento {
       const instPalestrante = document.getElementById(
         'instPalestranteForm',
       ).value;
-
+      const eventoID = document.getElementsByName('eventos-list')[0].value;
       body = {
         nomePalestrante,
         emailPalestrante,
         cargoPalestrante,
         instPalestrante,
+        eventoID,
       };
       route = 'palestrantes/new';
     }
@@ -303,7 +313,7 @@ class SistemaEvento {
       body,
     });
     if (!response['MSG']) {
-      location.reload();
+      location.reload()
     }
   }
 
@@ -331,6 +341,7 @@ class SistemaEvento {
       for (let evento of this.dataHandler.getEventos()) {
         opt = document.createElement('option');
         opt.text = evento.nomeEvento;
+        opt.value = evento.id;
         this.selectElement.appendChild(opt);
       }
     }
