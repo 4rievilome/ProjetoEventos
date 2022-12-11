@@ -24,9 +24,11 @@ export class PalestranteService {
         email: novoPalestrante.getEmail(),
         cargo: novoPalestrante.getCargo(),
         instituicao: novoPalestrante.getInstituicao(),
+        eventoID: novoPalestrante.getEventoId(),
       });
       return p ? true : false;
     } catch (error) {
+      console.log(error);
       return false;
     }
   }

@@ -3,16 +3,19 @@ export class Palestrante {
   private email: string;
   private cargo: string;
   private instituicao: string;
+  private eventoID: number;
   constructor(
     nomePalestrante: string,
     email: string,
     cargo: string,
     instituicao: string,
+    eventoID: number,
   ) {
     this.nomePalestrante = nomePalestrante;
     this.email = email;
     this.cargo = cargo;
     this.instituicao = instituicao;
+    this.eventoID = eventoID;
   }
 
   getNome(): string {
@@ -29,6 +32,10 @@ export class Palestrante {
 
   getInstituicao(): string {
     return this.instituicao;
+  }
+
+  getEventoId(): number {
+    return this.eventoID;
   }
 
   setNome(nome: string): void {

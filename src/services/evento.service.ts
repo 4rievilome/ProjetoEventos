@@ -8,6 +8,9 @@ export class EventoService {
     try {
       const e = (
         await Eventos.findByPk(id, {
+          include: [
+            { all: true, attributes: { exclude: ['createdAt', 'updatedAt'] } },
+          ],
           attributes: { exclude: ['createdAt', 'updatedAt'] },
         })
       ).toJSON();
@@ -24,10 +27,11 @@ export class EventoService {
         horario: novoEvento.getHorario(),
         capacidadeMax: +novoEvento.getCapacidade(),
         tema: novoEvento.getTema(),
-        palestrantes: novoEvento.getPalestrantes(),
+        dataEvento: novoEvento.getDataEvento(),
       });
       return obj ? true : false;
     } catch (error) {
+      console.log(error);
       return false;
     }
   }
@@ -45,6 +49,9 @@ export class EventoService {
   async getAll(): Promise<object> {
     try {
       const eventos = await Eventos.findAll({
+        include: [
+          { all: true, attributes: { exclude: ['createdAt', 'updatedAt'] } },
+        ],
         attributes: { exclude: ['createdAt', 'updatedAt'] },
       });
       return eventos;
