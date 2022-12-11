@@ -69,11 +69,12 @@ class Connect {
         .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(body[k])}`)
         .join('&'),
     };
-    console.log(config);
     const URL = `${this.serverAdd}/${route}`;
     const response = await fetch(URL, config);
     if (!response.ok) return { MSG: 'Fetch error' };
-    return await response.json();
+    const jsonResponse = await response.json();
+    jsonResponse['FROM'] = route;
+    return jsonResponse;
   }
 
   async getRequest(route) {
@@ -114,6 +115,7 @@ class SistemaEvento {
   eventIdSelected = 0;
   cadastroEvento = true;
   selectElement = null;
+  eventosHipoteticos = [];
   constructor(
     dataHandler,
     connect,
@@ -162,58 +164,69 @@ class SistemaEvento {
   setContador(id) {
     this.contador = id;
   }
+  async resetEventos() {
+    const eventos = document.getElementsByClassName('evento');
+    for (let evento of eventos) {
+      evento.remove();
+    }
+    return this;
+  }
+
+  addEvento(evento) {
+    console.log(evento);
+    let novoElemento;
+    let divInfo;
+    let titulo;
+    let tema;
+    let palestrantes;
+    let horario;
+    let divInsc;
+    let btnDiv;
+    let insc;
+    novoElemento = document.createElement('div');
+    novoElemento.className = 'evento';
+
+    divInfo = document.createElement('div');
+    divInfo.className = 'info';
+    novoElemento.appendChild(divInfo);
+
+    titulo = document.createElement('p');
+    titulo.innerText = evento.nomeEvento;
+    divInfo.appendChild(titulo);
+
+    tema = document.createElement('p');
+    tema.innerText = `Tema: ${evento.tema}`;
+    divInfo.appendChild(tema);
+
+    horario = document.createElement('p');
+    horario.innerText = `Horario: ${evento.horario}`;
+    divInfo.appendChild(horario);
+
+    palestrantes = document.createElement('p');
+    palestrantes.innerText = `Palestrantes: ${evento.palestrantes}`;
+    divInfo.appendChild(palestrantes);
+
+    divInsc = document.createElement('div');
+    divInsc.className = 'insc';
+    novoElemento.appendChild(divInsc);
+
+    btnDiv = document.createElement('div');
+    btnDiv.onclick = () => handleClicks({ key: 'open', eventoID: evento.id });
+    divInsc.appendChild(btnDiv);
+
+    insc = document.createElement('p');
+    insc.innerText = 'Inscrever-se';
+
+    btnDiv.appendChild(insc);
+
+    this.boxEventos.appendChild(novoElemento);
+  }
 
   addEventos() {
     if (this.dataHandler?.numEventos() > 0) {
       this.error.style.display = 'none';
-      let novoElemento;
-      let divInfo;
-      let titulo;
-      let tema;
-      let palestrantes;
-      let horario;
-      let divInsc;
-      let btnDiv;
-      let insc;
       for (let evento of this.dataHandler.getEventos()) {
-        novoElemento = document.createElement('div');
-        novoElemento.className = 'evento';
-
-        divInfo = document.createElement('div');
-        divInfo.className = 'info';
-        novoElemento.appendChild(divInfo);
-
-        titulo = document.createElement('p');
-        titulo.innerText = evento.nomeEvento;
-        divInfo.appendChild(titulo);
-
-        tema = document.createElement('p');
-        tema.innerText = `Tema: ${evento.tema}`;
-        divInfo.appendChild(tema);
-
-        horario = document.createElement('p');
-        horario.innerText = `Horario: ${evento.horario}`;
-        divInfo.appendChild(horario);
-
-        palestrantes = document.createElement('p');
-        palestrantes.innerText = `Palestrantes: ${evento.palestrantes}`;
-        divInfo.appendChild(palestrantes);
-
-        divInsc = document.createElement('div');
-        divInsc.className = 'insc';
-        novoElemento.appendChild(divInsc);
-
-        btnDiv = document.createElement('div');
-        btnDiv.onclick = () =>
-          handleClicks({ key: 'open', eventoID: evento.id });
-        divInsc.appendChild(btnDiv);
-
-        insc = document.createElement('p');
-        insc.innerText = 'Inscrever-se';
-
-        btnDiv.appendChild(insc);
-
-        this.boxEventos.appendChild(novoElemento);
+        this.addEvento(evento);
       }
     }
   }
@@ -290,7 +303,7 @@ class SistemaEvento {
       body,
     });
     if (!response['MSG']) {
-      console.log('FOI');
+      location.reload();
     }
   }
 
