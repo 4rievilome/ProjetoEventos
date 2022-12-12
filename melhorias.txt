@@ -1,0 +1,5 @@
+ - Remover eventos
+ - Utilizar a API da criação de itens
+ - Verificar e-mail de inscritos
+ - Tranformar site responsivo para mobile
+ - Gerenciar cookies e sessões
