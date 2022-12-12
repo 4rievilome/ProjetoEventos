@@ -45,15 +45,15 @@ body {
     margin-bottom: 4%;
 }
 .card img{
-    width: 1090px;
-    height: 500px;
+    width: 1490px;
+    height: 650px;
     box-shadow: #251253 2px 4px 20px;
 }
 .card #slider{
     width: 76%;
     padding: 2%;
     position: absolute;
-    margin-top: 34%;
+    margin-top: 60vh;
     display: flex;
     justify-content: center;
 }
@@ -322,7 +322,7 @@ body {
     padding-top: 2%;
     background-color: #451EA4;
     width: 50%;
-    height: 100% !important;
+    height: 50% !important;
     box-shadow: 2px 2px 10px #251253;
 }
 
@@ -391,7 +391,7 @@ body {
 
 @media(max-width: 1024px) {
     .card img{
-        width: 920px;
+        width: 920px !important;
         height: 500px;
     }
 
@@ -400,9 +400,10 @@ body {
     }
     
     #header{
-        grid-template-columns: 33vw 55vw 1vw;
+        grid-template-columns: 33vw 55vw 1vw !important;
         color:#EDEDED;
-        padding-top: 7%;
+        padding-top: 3%;
+        font-size: 13px;
     }
     
     .card #slider{
@@ -423,5 +424,24 @@ body {
         border: none;
         border-radius: 20px;
         margin-right: 25px;
+    }
+}
+
+@media(max-width: 1532px) {
+    .card img{
+        width: 1000px;
+        height: 600px;
+    }
+    body{
+        grid-template-rows: 10vh 80vh 89vh !important;
+    }
+    #header{
+        font-size: 15px;
+    }
+    #slider{
+        margin-top: 60vh;
+    }
+    #card{
+        height: 50% !important;
     }
 }
