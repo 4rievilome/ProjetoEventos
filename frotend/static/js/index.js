@@ -101,8 +101,8 @@ class SistemaEvento {
   ];
   titulos = [
     'OFICINA DE CRIAÇÃO DE GAMES',
-    'PALESTRA SOBRE IOT',
-    'BAIANINHO DE MAUÁ ARRASANDO',
+    'PALESTRA SOBRE IoT',
+    'Stand de robotica',
   ];
 
   imgSlider = null;
