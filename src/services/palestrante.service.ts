@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Palestrante } from 'types/Palestrante';
-import { Palestrantes } from 'utils/models/Palestrante';
+import { Palestrante } from '../../types/Palestrante';
+import { Palestrantes } from '../../utils/models/Palestrante'
 
 @Injectable()
 export class PalestranteService {

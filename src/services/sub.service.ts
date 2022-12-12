@@ -1,5 +1,5 @@
-import { Subscriptions } from 'utils/models/Subscriptions';
-import { Sub } from 'types/Sub';
+import { Subscriptions } from '../../utils/models/Subscriptions';
+import { Sub } from '../../types/Sub';
 export class SubService {
   async registraSub(novaSub: Sub): Promise<boolean> {
     try {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Evento } from 'types/Evento';
-import { Eventos } from 'utils/models/Evento';
+import { Evento } from '../../types/Evento'
+import { Eventos } from '../../utils/models/Evento';
 
 @Injectable()
 export class EventoService {

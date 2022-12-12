@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Param, Body, Header } from '@nestjs/common';
-import { Item } from 'types/Item';
+import { Item } from '../../types/Item'
 import { ControllerInterface } from './ControllerInterface';
 import { ItemService } from '../services/item.service';
 

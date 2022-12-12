@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import { Palestrantes } from './Palestrante';
-import { sequelize } from 'utils/SequelizeConnect';
+import { sequelize } from '../SequelizeConnect';
 import { Subscriptions } from './Subscriptions';
 export class Eventos extends Model {}
 

@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
-import { sequelize } from 'utils/SequelizeConnect';
+import { sequelize } from '../SequelizeConnect';
+
 
 export class Subscriptions extends Model {}
 

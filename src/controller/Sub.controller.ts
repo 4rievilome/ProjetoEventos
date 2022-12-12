@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Header } from '@nestjs/common';
-import { Sub } from 'types/Sub';
-import { SubService } from 'src/services/sub.service';
+import { Sub } from '../../types/Sub';
+import { SubService } from '../services/sub.service';
 
 @Controller('subs')
 export class SubController {

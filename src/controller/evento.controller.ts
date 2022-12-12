@@ -1,6 +1,6 @@
-import { EventoService } from 'src/services/evento.service';
+import { EventoService } from '../services/evento.service';
 import { Body, Controller, Get, Param, Post, Header} from '@nestjs/common';
-import { Evento } from 'types/Evento';
+import { Evento } from '../../types/Evento';
 import { ControllerInterface } from './ControllerInterface';
 
 @Controller('eventos')

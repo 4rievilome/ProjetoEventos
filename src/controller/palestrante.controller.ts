@@ -1,7 +1,7 @@
-import { PalestranteService } from 'src/services/palestrante.service';
+import { PalestranteService } from '../services/palestrante.service';
 import { ControllerInterface } from './ControllerInterface';
 import { Controller, Get, Post, Body, Param, Header } from '@nestjs/common';
-import { Palestrante } from 'types/Palestrante';
+import { Palestrante } from '../../types/Palestrante';
 
 @Controller('palestrantes')
 export class PalestranteController implements ControllerInterface {
