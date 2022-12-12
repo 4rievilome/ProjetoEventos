@@ -7,4 +7,4 @@ export const sequelize = new Sequelize(info.DB, info.USER, info.PASSWORD, {
   port: info.PORT,
 });
 
-sequelize.sync({ force: true });
+sequelize.sync({ force: false });

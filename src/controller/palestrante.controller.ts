@@ -25,15 +25,13 @@ export class PalestranteController implements ControllerInterface {
   @Post('new')
   @Header('Access-Control-Allow-Origin', '*')
   async registra(@Body() body: any): Promise<object> {
-    console.log(body);
     const p = new Palestrante(
       body?.nomePalestrante,
-      body?.email,
-      body?.cargo,
-      body?.instituicao,
+      body?.emailPalestrante,
+      body?.cargoPalestrante,
+      body?.instPalestrante,
       +body.eventoID,
     );
-    console.log(p);
     return (await this.palestranteService.registraPalestrante(p))
       ? { Message: 'Criado com sucesso' }
       : { Message: 'Falha ao criar' };
