@@ -39,14 +39,17 @@
 - Após baixar o postgres abra o executavel PgAdmin e crie uma senha para seu usuario
 - Crie o Banco de Dados dentro dos servidores
 - Preencha o arquivo "info.ts" com os dados do banco:
-
     - Host
     - User (postgres é o usuario padrão do postgres)
     - Password
     - PORT (caso esteja usando em uma porta diferente da padrão)
     - DB (nome do banco de dados criado)
 # Executar projeto 
-
+### O frontend fica dentro do arquivo index.html na pasta frontend para executar o projeto
+### Passo a passo:
+- Configurar banco
+- Iniciar Servidor
+- Abrir index.html (frontend/index.html)
 ## Iniciar servidor - PORTA 3000
 ```
     npm run start
